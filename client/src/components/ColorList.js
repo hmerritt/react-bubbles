@@ -36,11 +36,21 @@ const ColorList = ({ colors, updateColors }) => {
             })
             .catch(err => {
                 console.log("[ColorList] Error updating color:", err);
-            })
+            });
     };
 
     const deleteColor = color => {
         // make a delete request to delete this color
+        axiosWithAuth()
+            .delete(`/colors/${color.id}`)
+            .then(res => {
+                console.log("[ColorList] Deleted color:", res.data);
+
+                updateColors( colors.filter(color => color.id !== res.data) );
+            })
+            .catch(err => {
+                console.log("[ColorList] Error deleting color:", err);
+            });
     };
 
     return (
