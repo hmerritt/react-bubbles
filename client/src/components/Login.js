@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Login = () => {
 
     const history = useHistory();
-
-    //  Get token from localstorage
-    const [token, setToken] = useLocalStorage("token", "");
 
     //  Input values
     const [input, setInput] = useState({
@@ -36,7 +32,7 @@ const Login = () => {
                 console.log("[Login] Success!", res);
 
                 //  Save token to localstorage
-                setToken(res.data.payload);
+                localStorage.setItem("token", res.data.payload);
 
                 // when you have handled the token, navigate to the BubblePage route
                 history.push("/Bubbles");
