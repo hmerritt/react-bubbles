@@ -39,7 +39,7 @@ const Login = () => {
                 setToken(res.data.payload);
 
                 // when you have handled the token, navigate to the BubblePage route
-                history.push("/BubblePage");
+                history.push("/Bubbles");
             })
             .catch(err => {
                 console.log("[Login] Error", err);
